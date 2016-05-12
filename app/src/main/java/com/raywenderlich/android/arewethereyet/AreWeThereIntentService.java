@@ -7,6 +7,8 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
@@ -82,6 +84,7 @@ public class AreWeThereIntentService extends IntentService {
   // region Private
 
   private void onEnteredGeofences(List<String> geofenceIds) {
+    Uri soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
     // 1. Outer loop over all geofenceIds
     for (String geofenceId : geofenceIds) {
       String geofenceName = "";
@@ -117,6 +120,7 @@ public class AreWeThereIntentService extends IntentService {
               .setContentIntent(pendingNotificationIntent)
               .setStyle(new NotificationCompat.BigTextStyle().bigText(contextText))
               .setPriority(NotificationCompat.PRIORITY_HIGH)
+              .setSound(soundUri)
               .setAutoCancel(true)
               .build();
       notificationManager.notify(0, notification);
