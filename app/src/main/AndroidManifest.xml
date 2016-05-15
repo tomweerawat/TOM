@@ -38,6 +38,8 @@ The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
       </intent-filter>
     </activity>
     <activity android:name=".AllGeofencesActivity"></activity>
+    <activity android:name=".JSON.MainActivity"></activity>
+
 
     <service android:name=".AreWeThereIntentService"/>
     

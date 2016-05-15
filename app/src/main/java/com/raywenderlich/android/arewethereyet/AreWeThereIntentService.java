@@ -7,6 +7,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
@@ -15,6 +16,7 @@ import android.util.Log;
 import com.google.android.gms.location.Geofence;
 import com.google.android.gms.location.GeofencingEvent;
 import com.google.gson.Gson;
+import com.raywenderlich.android.arewethereyet.JSON.MainActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -108,7 +110,7 @@ public class AreWeThereIntentService extends IntentService {
               (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
 
 // 2. Create a PendingIntent for AllGeofencesActivity
-      Intent intent = new Intent(this, AllGeofencesActivity.class);
+      Intent intent = new Intent(this, MainActivity.class);
       intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
       PendingIntent pendingNotificationIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
@@ -123,6 +125,7 @@ public class AreWeThereIntentService extends IntentService {
               .setSound(soundUri)
               .setAutoCancel(true)
               .build();
+
       notificationManager.notify(0, notification);
     }
 
