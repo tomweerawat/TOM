@@ -1,5 +1,7 @@
 package com.raywenderlich.android.arewethereyet.JSON;
 
+import android.widget.TextView;
+
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,16 +38,16 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
         return android.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
-        private TextView tv_name,tv_version,tv_api_level;
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        private TextView tv_name, tv_version, tv_api_level;
+
         public ViewHolder(View view) {
             super(view);
 
-            tv_name = (TextView)view.findViewById(R.id.tv_name);
-            tv_version = (TextView)view.findViewById(R.id.tv_version);
-            tv_api_level = (TextView)view.findViewById(R.id.tv_api_level);
+            tv_name = (TextView) view.findViewById(R.id.tv_name);
+            tv_version = (TextView) view.findViewById(R.id.tv_version);
+            tv_api_level = (TextView) view.findViewById(R.id.tv_api_level);
 
         }
     }
-
 }
