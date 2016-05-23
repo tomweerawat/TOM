@@ -116,7 +116,7 @@ public class AreWeThereIntentService extends IntentService {
 
 // 3. Create and send a notification
       Notification notification = new NotificationCompat.Builder(this)
-              .setSmallIcon(R.drawable.kfc)
+              .setSmallIcon(R.mipmap.cen3)
               .setContentTitle(this.getResources().getString(R.string.Notification_Title))
               .setContentText(contextText)
               .setContentIntent(pendingNotificationIntent)

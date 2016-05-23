@@ -33,8 +33,8 @@
   <string name="Units.Kilometers">km</string>
 
   <!-- Notification -->
-  <string name="Notification.Title">KFC</string>
-  <string name="Notification.Text">We\'re at %1$s!!!</string>
+  <string name="Notification.Title">Central Rama3</string>
+  <string name="Notification.Text">Central Rama3 has promotion !!!</string>
 
   <!-- Toast -->
   <string name="Toast.Validation">Please enter valid data for all fields</string>
