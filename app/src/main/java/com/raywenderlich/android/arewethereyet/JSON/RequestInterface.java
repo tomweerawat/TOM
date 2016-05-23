@@ -5,6 +5,6 @@ import retrofit2.http.GET;
 
 public interface RequestInterface {
 
-    @GET("android/jsonandroid")
+    @GET("android/testjson.json")//("android/jsonandroid")
     Call<JSONResponse> getJSON();
 }

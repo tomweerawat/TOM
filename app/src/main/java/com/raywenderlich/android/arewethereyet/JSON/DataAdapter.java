@@ -29,6 +29,10 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
     public void onBindViewHolder(DataAdapter.ViewHolder viewHolder, int i) {
 
         viewHolder.tv_name.setText(android.get(i).getName());
+        //viewHolder.tv_name.setText(android.get(i).getUsername());
+       // viewHolder.tv_name.setText(android.get(i).getPassword());
+        //viewHolder.tv_name.setText(android.get(i).getEmail());
+
         viewHolder.tv_version.setText(android.get(i).getVer());
         viewHolder.tv_api_level.setText(android.get(i).getApi());
     }
