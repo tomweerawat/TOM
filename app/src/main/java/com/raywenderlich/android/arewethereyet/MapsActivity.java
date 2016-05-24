@@ -111,9 +111,9 @@ public class MapsActivity extends FragmentActivity {
        // mMap.addMarker(new MarkerOptions().position(new LatLng(0, 0)).title("Marker"));
         LatLng Bangkok = new LatLng(13.698948, 100.537306);
         mMap.addMarker(new MarkerOptions().position(Bangkok)
-                .title("KFC")
+                .title("Central Rama3")
                 .icon(BitmapDescriptorFactory.fromResource(R.mipmap.h))
-                .snippet("KFC"));
+                .snippet("Central Rama3"));
 
 
         mMap.setMyLocationEnabled(true);
