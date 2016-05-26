@@ -1,6 +1,7 @@
 package com.raywenderlich.android.arewethereyet;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
@@ -14,8 +15,12 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.Circle;
+import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polyline;
+import com.google.android.gms.maps.model.PolylineOptions;
 
 import java.io.IOException;
 import java.util.List;
@@ -108,12 +113,23 @@ public class MapsActivity extends FragmentActivity {
 
     private void setUpMap() {
         Log.d("setUpMap", "setUpMap");
-       // mMap.addMarker(new MarkerOptions().position(new LatLng(0, 0)).title("Marker"));
+        mMap.moveCamera( CameraUpdateFactory.newLatLngZoom(new LatLng(13.698948,100.537306) , 6.0f));
+        Circle circle = mMap.addCircle(new CircleOptions()
+                .center(new LatLng(13.698948, 100.537306))
+                .radius(2000)
+                .strokeColor(Color.BLACK)
+                .fillColor(Color.LTGRAY));
+        // mMap.addMarker(new MarkerOptions().position(new LatLng(0, 0)).title("Marker"));
         LatLng Bangkok = new LatLng(13.698948, 100.537306);
         mMap.addMarker(new MarkerOptions().position(Bangkok)
                 .title("Central Rama3")
                 .icon(BitmapDescriptorFactory.fromResource(R.mipmap.h))
                 .snippet("Central Rama3"));
+
+        Polyline line = mMap.addPolyline(new PolylineOptions()
+                .add(new LatLng(13.698948, 100.537306))
+                .width(5)
+                .color(Color.RED));
 
 
         mMap.setMyLocationEnabled(true);
