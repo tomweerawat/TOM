@@ -118,7 +118,7 @@ public class MapsActivity extends FragmentActivity {
                 .center(new LatLng(13.698948, 100.537306))
                 .radius(2000)
                 .strokeColor(Color.BLACK)
-                .fillColor(Color.LTGRAY));
+                .fillColor(0x110000FF));
         // mMap.addMarker(new MarkerOptions().position(new LatLng(0, 0)).title("Marker"));
         LatLng Bangkok = new LatLng(13.698948, 100.537306);
         mMap.addMarker(new MarkerOptions().position(Bangkok)
