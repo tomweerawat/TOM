@@ -25,6 +25,7 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder>{
     private ArrayList<AndroidVersion> android;
     private Context context;
 
+
     public DataAdapter(ArrayList<AndroidVersion> android) {
         this.android = android;
     }
@@ -39,9 +40,7 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder>{
     public void onBindViewHolder(DataAdapter.ViewHolder viewHolder, int i) {
         final AndroidVersion androidVersion = android.get(i);
         viewHolder.tv_name.setText(android.get(i).getName());
-        //viewHolder.tv_name.setText(android.get(i).getUsername());
-        // viewHolder.tv_name.setText(android.get(i).getPassword());
-        //viewHolder.tv_name.setText(android.get(i).getEmail());
+
         Log.d("onBindViewHolder","onBindViewHolder");
         viewHolder.tv_version.setText(android.get(i).getVer());
         viewHolder.tv_api_level.setText(android.get(i).getApi());
@@ -88,18 +87,6 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder>{
         public void onClick(View v) {
             Log.d("Click","Click");
             Toast.makeText(v.getContext(), "OnClick Version :", Toast.LENGTH_SHORT).show();
-
-            //Intent i = new Intent(v.getContext(), MapsActivity.class);
-            //Intent i = new Intent(context,DataAdapter.this,MapsActivity.class);
-            //context.startActivity(i);
-
-
-
-
-
-            //mListener.onClickItem(getLayoutPosition());
-            // System.exit(0);
-
         }
 
         @Override

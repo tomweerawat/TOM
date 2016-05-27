@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
@@ -31,11 +32,10 @@ import butterknife.OnClick;
 
 public class MapsActivity extends FragmentActivity {
 
-    @Bind(R.id.btndata)
+   @Bind(R.id.btndata1)
     Button btndata;
-    @OnClick(R.id.btndata) void click(){
-        Intent i = new Intent(this,AllGeofencesActivity.class);
-        startActivity(i);
+    @OnClick(R.id.btndata1) void click(){
+     tent();
     }
     private GoogleMap mMap; // Might be null if Google Play services APK is not available.
 
@@ -135,5 +135,11 @@ public class MapsActivity extends FragmentActivity {
         mMap.setMyLocationEnabled(true);
 
 
+    }
+    public void tent(){
+        Uri gmmIntentUri = Uri.parse("geo:13.698948, 100.537306");
+        Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+        mapIntent.setPackage("com.google.android.apps.maps");
+        startActivity(mapIntent);
     }
 }

@@ -60,6 +60,10 @@
         android:id="@+id/Bzoomout"
         android:layout_gravity="center_vertical"
         android:onClick="onZoom" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btndata1"/>
 
 </LinearLayout>
 </LinearLayout>
@@ -72,10 +76,5 @@
 
     </LinearLayout>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Add Data"
-        android:id="@+id/btndata"
-        android:layout_gravity="right" />
+
 </LinearLayout>
