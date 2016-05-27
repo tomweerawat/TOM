@@ -1,8 +1,9 @@
 package com.raywenderlich.android.arewethereyet;
 
+import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
 import android.speech.RecognizerIntent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -12,6 +13,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,55 +23,36 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.raywenderlich.android.arewethereyet.Register.MyTTS;
-import com.raywenderlich.android.arewethereyet.Register.Register1;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONArray;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.Locale;
 
-import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MenuActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-    Handler handler = new Handler();
-    public static final String BASE_URL = "http://192.168.56.1/";
 
-    @Bind(R.id.btnlogin)
-    Button btnlogin;
-    @Bind(R.id.edtusername)
-    EditText edtusername;
-    @Bind(R.id.edtpass)
-    EditText edtpass;
-
-    @OnClick(R.id.btnlogin)
-    void click() {
-
-        String username = edtusername.getText().toString();
-        String pass = edtpass.getText().toString();
-        if(!username.equals(pass)){
-            Toast.makeText(this,"FailLogin",Toast.LENGTH_LONG).show();
-        }
-        else if(username.equals(pass)) {
-            Toast.makeText(this,"Welcome",Toast.LENGTH_LONG).show();
-            Intent i = new Intent(this, Hello.class);
-            startActivity(i);
-        }
-
-
-    }
-
-    @Bind(R.id.tvregis)
-    TextView tvregis;
-
-    @OnClick(R.id.tvregis)
-    void a() {
-        Intent i = new Intent(this, Register1.class);
-        startActivity(i);
-    }
 
     private final static int REQUEST_VOICE_RECOGNITION = 10001;
     private Button btnSay;
+    private Button mLogin;
+    private EditText mUsername;
+    private EditText mPassword;
+    private TextView mRegister;
+    private Context mContext;
+    String username1,password1;
 
 
     private void callVoiceRecognition() {
@@ -115,6 +98,84 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        mContext = this;
+        //mLogin = (Button) findViewById(R.id.button_login);
+        mUsername = (EditText) findViewById(R.id.username);
+        mPassword = (EditText) findViewById(R.id.password);
+        mRegister = (TextView) findViewById(R.id.register);
+        mRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MenuActivity.this, com.raywenderlich.android.arewethereyet.Hello.class);
+                startActivity(intent);
+            }
+        });
+        mLogin = (Button) findViewById(R.id.button_login);
+        mLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View v) {
+                username1 = mUsername.getText().toString();
+                password1 = mPassword.getText().toString();
+                AsyncTask<Void, Void, JSONArray> async = new AsyncTask<Void, Void, JSONArray>() {
+                    @Override
+                    protected JSONArray doInBackground(Void... params) {
+                        ArrayList<NameValuePair> nameValue = new ArrayList<NameValuePair>();
+                        nameValue.add(new BasicNameValuePair("username", username1));
+                        nameValue.add(new BasicNameValuePair("password", password1));
+                        HttpClient httpClient = new DefaultHttpClient();
+                        HttpPost httpPost = new HttpPost("http://10.255.13.193/projectNT/checkLogin.php");
+                        try {
+                            UrlEncodedFormEntity formEntity = new UrlEncodedFormEntity(nameValue);
+                            httpPost.setEntity(formEntity);
+                            HttpResponse httpResponse = httpClient.execute(httpPost);
+                            String result = inputStreamToString(httpResponse.getEntity().getContent()).toString();
+                            if (result.equals("null")) {
+                                return null;
+                            } else {
+                                Log.e("jsonarr", result);
+                                JSONArray jsonArray = new JSONArray(result);
+                                return jsonArray;
+                            }
+                        } catch (Exception ex) {
+                            ex.printStackTrace();
+                            Log.e("Error1", ex.toString());
+                            return null;
+                        }
+                    }
+
+                    private StringBuilder inputStreamToString(InputStream streammessage) {
+                        String stringMsg="";
+                        StringBuilder stringBuilder = new StringBuilder();
+                        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(streammessage));
+                        try {
+                            while ((stringMsg = bufferedReader.readLine())!=null){
+                                stringBuilder.append(stringMsg);
+                            }
+                        }
+                        catch (IOException ex){
+                            ex.printStackTrace();
+                        }
+                        return stringBuilder;
+
+                    }
+
+                    protected void onPostExecute(JSONArray result) {
+                        super.onPostExecute(result);
+                        try {
+                            Toast.makeText(v.getContext(), "เข้าสู่ระบบเรียนร้อย", Toast.LENGTH_LONG).show();
+                            String strMemberID = result.getJSONObject(0).getString("username");
+
+                            Intent intent = new Intent(v.getContext(), Hello.class);
+                            intent.putExtra("MemberID", strMemberID);
+                            startActivity(intent);
+                        } catch (Exception ex) {
+                            Log.e("Error", ex.toString());
+                        }
+                    }
+                }.execute();
+
+            }
+        });
     }
 
     @Override
@@ -129,19 +190,15 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
@@ -178,12 +235,5 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
-   /* private void loginProcess(String edtusername,String edtpass) {
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        Register1 register1 =  retrofit.create(Register1.class);
-    }*/
 }

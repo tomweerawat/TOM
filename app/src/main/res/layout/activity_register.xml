@@ -34,36 +34,34 @@
             android:textColorHint="#FFFFFF"
             android:inputType="textPassword"
             android:hint="@string/password_title"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:id="@+id/confirm_password"
+            android:textColor="#ffffff"
+            android:textColorHint="#FFFFFF"
+            android:inputType="textPassword"
+            android:hint="Re-password"/>
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/button_login"
+            android:id="@+id/button_register"
             android:background="#49000000"
             android:textColor="#ffffff"
-            android:text="@string/button_login"
+            android:text="@string/button_register"
             android:textSize="18sp"
             android:layout_marginTop="16dp"/>
 
     </LinearLayout>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/register"
-        android:text="@string/register"
-        android:textColor="#ffffff"
-        android:layout_centerInParent="true"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginBottom="16dp"/>
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/imageView"
         android:src="@drawable/logo2"
+        android:layout_above="@+id/linearLayout"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
-
 
 </RelativeLayout>

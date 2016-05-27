@@ -8,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
+import com.raywenderlich.android.arewethereyet.CommentActivity;
 import com.raywenderlich.android.arewethereyet.Hello;
 import com.raywenderlich.android.arewethereyet.R;
 
@@ -29,7 +30,7 @@ public class MainActivity extends Activity {
     @Bind(R.id.fab)
     FloatingActionButton fab;
     @OnClick(R.id.fab) void cc(){
-        Intent i = new Intent(this, Hello.class);
+        Intent i = new Intent(this, CommentActivity.class);
         startActivity(i);
     }
     private Integer[] imgid = {R.mipmap.ic_launcher,};
@@ -59,7 +60,7 @@ public class MainActivity extends Activity {
 
     private void loadJSON() {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.56.1:8181")//("http://api.learn2crack.com")
+                .baseUrl("http://192.168.56.1:80")//("http://api.learn2crack.com")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         RequestInterface request = retrofit.create(RequestInterface.class);
