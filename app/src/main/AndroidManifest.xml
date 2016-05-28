@@ -40,11 +40,12 @@ The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
         <activity android:name=".LoginActivity"></activity>
         <activity android:name=".RegisterActivity"></activity>
 
+
         <service android:name=".AreWeThereIntentService" />
 
         <activity
             android:name=".MenuActivity"
-            android:label="@string/title_activity_menu"
+            android:label="MenuActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

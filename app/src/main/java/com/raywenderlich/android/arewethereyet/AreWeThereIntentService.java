@@ -65,7 +65,7 @@ public class AreWeThereIntentService extends IntentService {
                 transition == Geofence.GEOFENCE_TRANSITION_EXIT) {
           List<String> geofenceIds = new ArrayList<>();
 
-          // 3. Accumulate a list of event geofences
+          // 3. Accumulate a list of event geofencesสะสม
           for (Geofence geofence : event.getTriggeringGeofences()) {
             geofenceIds.add(geofence.getRequestId());
           }

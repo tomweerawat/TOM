@@ -27,9 +27,6 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Notkak on 26/5/2559.
- */
 public class CommentActivity extends Activity {
     ListView list;
     EditText eComment;
@@ -54,7 +51,7 @@ public class CommentActivity extends Activity {
                         nameValue.add(new BasicNameValuePair("id_customer",id_customer));
                         nameValue.add(new BasicNameValuePair("comm",comm));
                         HttpClient httpClient=new DefaultHttpClient();
-                        HttpPost httpPost=new HttpPost("http://10.255.13.193/projectNT/savecomment.php");
+                        HttpPost httpPost=new HttpPost("http://192.168.56.1:8181/projectNT/savecomment.php");
                         try{
                             UrlEncodedFormEntity formEntity = new UrlEncodedFormEntity(nameValue);
                             httpPost.setEntity(formEntity);
@@ -85,7 +82,7 @@ public class CommentActivity extends Activity {
                                         protected JSONArray doInBackground(Void... params) {
 
                                             HttpClient httpClient = new DefaultHttpClient();
-                                            HttpPost httpPost = new HttpPost("http://10.255.13.193/projectNT/loadcomment.php");
+                                            HttpPost httpPost = new HttpPost("http://192.168.56.1:8181/projectNT/loadcomment.php");
                                             try {
                                                 HttpResponse httpResponse = httpClient.execute(httpPost);
                                                 String result = inputStreamToString(httpResponse.getEntity().getContent()).toString();
@@ -139,7 +136,7 @@ public class CommentActivity extends Activity {
                 //nameValue.add(new BasicNameValuePair("username", username1));
                 //nameValue.add(new BasicNameValuePair("password", password1));
                 HttpClient httpClient = new DefaultHttpClient();
-                HttpPost httpPost = new HttpPost("http://10.255.13.193/projectNT/loadcomment.php");
+                HttpPost httpPost = new HttpPost("http://192.168.56.1:8181/projectNT/loadcomment.php");
                 try {
                     HttpResponse httpResponse = httpClient.execute(httpPost);
                     String result = inputStreamToString(httpResponse.getEntity().getContent()).toString();

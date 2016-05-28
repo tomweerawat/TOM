@@ -8,23 +8,32 @@
         android:layout_height="198dp"
         android:dividerHeight="1dp"
         android:nestedScrollingEnabled="true"
-        android:layout_marginTop="20dp"/>
+        android:layout_above="@+id/et_comment"
+        android:layout_below="@+id/imageView2" />
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="88dp"
         android:id="@+id/et_comment"
-        android:layout_below="@+id/custom_list"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/bt_comment" />
     <Button
         android:id="@+id/bt_comment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/et_comment"
-        android:layout_marginTop="20dp"
         android:text="Comment"
-        android:layout_centerHorizontal="true"/>
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:id="@+id/imageView2"
+        android:src="@drawable/kfc"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

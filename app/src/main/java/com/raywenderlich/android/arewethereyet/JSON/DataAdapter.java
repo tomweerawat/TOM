@@ -86,7 +86,7 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder>{
         @Override
         public void onClick(View v) {
             Log.d("Click","Click");
-            Toast.makeText(v.getContext(), "OnClick Version :", Toast.LENGTH_SHORT).show();
+            Toast.makeText(v.getContext(), "Not Available Now!!", Toast.LENGTH_SHORT).show();
         }
 
         @Override

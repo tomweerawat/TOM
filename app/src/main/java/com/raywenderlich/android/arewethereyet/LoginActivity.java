@@ -74,7 +74,7 @@ public class LoginActivity extends Activity {
                         nameValue.add(new BasicNameValuePair("username", username1));
                         nameValue.add(new BasicNameValuePair("password", password1));
                         HttpClient httpClient = new DefaultHttpClient();
-                        HttpPost httpPost = new HttpPost("http://10.255.13.193/projectNT/checkLogin.php");
+                        HttpPost httpPost = new HttpPost("http://192.168.56.1:8181/projectNT/checkLogin.php");
                         try {
                             UrlEncodedFormEntity formEntity = new UrlEncodedFormEntity(nameValue);
                             httpPost.setEntity(formEntity);
@@ -97,14 +97,15 @@ public class LoginActivity extends Activity {
                     protected void onPostExecute(JSONArray result) {
                         super.onPostExecute(result);
                         try {
-                            Toast.makeText(v.getContext(), "เข้าสู่ระบบเรียนร้อย", Toast.LENGTH_LONG).show();
+
                             String strMemberID=result.getJSONObject(0).getString("username");
 
                             Intent intent = new Intent(v.getContext(), Hello.class);
                             intent.putExtra("MemberID",strMemberID);
                             startActivity(intent);
+                            Toast.makeText(v.getContext(), "เข้าสู่ระบบเรียนร้อย", Toast.LENGTH_LONG).show();
                         } catch (Exception ex) {
-                            Log.e("Error", ex.toString());
+                            Toast.makeText(v.getContext(), "ไม่สามารถเข้าสู่ระบบด้วย", Toast.LENGTH_LONG).show();
                         }
                     }
                 }.execute();

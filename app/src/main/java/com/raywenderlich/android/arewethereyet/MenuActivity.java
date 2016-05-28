@@ -106,7 +106,7 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
         mRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MenuActivity.this, com.raywenderlich.android.arewethereyet.Hello.class);
+                Intent intent = new Intent(MenuActivity.this, RegisterActivity.class);
                 startActivity(intent);
             }
         });
@@ -123,7 +123,7 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
                         nameValue.add(new BasicNameValuePair("username", username1));
                         nameValue.add(new BasicNameValuePair("password", password1));
                         HttpClient httpClient = new DefaultHttpClient();
-                        HttpPost httpPost = new HttpPost("http://10.255.13.193/projectNT/checkLogin.php");
+                        HttpPost httpPost = new HttpPost("http://192.168.56.1:8181/projectNT/checkLogin.php");
                         try {
                             UrlEncodedFormEntity formEntity = new UrlEncodedFormEntity(nameValue);
                             httpPost.setEntity(formEntity);
@@ -220,7 +220,7 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
 
 
         } else if (id == R.id.nav_slideshow) {
-            Intent i = new Intent(this, Hello.class);
+            Intent i = new Intent(this, CommentActivity.class);
             startActivity(i);
 
         } else if (id == R.id.nav_manage) {

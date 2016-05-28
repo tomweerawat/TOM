@@ -9,11 +9,10 @@
         android:layout_height="wrap_content"
         android:text="View Comment"
         android:textStyle="bold"
-        android:background="#ffffff"
+        android:background="@drawable/colour"
         android:id="@+id/btncomment"
         android:textColor="#FFFFFF"
-        android:layout_marginTop="173dp"
-        android:layout_alignParentTop="true"
+        android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
 
     <Button
@@ -23,10 +22,34 @@
         android:textStyle="bold"
         android:text="SearchService"
         android:id="@+id/btnservice"
-        android:background="#ffffff"
-        android:layout_marginTop="56dp"
-        android:layout_below="@+id/btncomment"
+        android:background="@drawable/colour"
+        android:layout_alignParentBottom="true"
         android:layout_alignLeft="@+id/btncomment"
-        android:layout_alignStart="@+id/btncomment" />
+        android:layout_alignStart="@+id/btncomment"
+        android:layout_marginBottom="112dp" />
+
+    <com.raywenderlich.android.arewethereyet.Register.CustomTextView
+        android:layout_width="400dp"
+        android:layout_height="100dp"
+        android:text="Welcome : "
+        android:textSize="30dp"
+        android:id="@+id/tv"
+        android:textColor="#FFFFFF"
+        android:layout_marginTop="53dp"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/textView2"
+        android:layout_toRightOf="@+id/textView2" />
+
+    <com.raywenderlich.android.arewethereyet.Register.CustomTextView
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="      Welcome : "
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:id="@+id/textView2"
+        android:layout_alignTop="@+id/tv"
+        android:textColor="#FFFFFF"
+        android:layout_alignBottom="@+id/tv" />
 
 </RelativeLayout>

@@ -59,7 +59,7 @@ public class RegisterActivity extends Activity {
                             nameValue.add(new BasicNameValuePair("username",username1));
                             nameValue.add(new BasicNameValuePair("password",password1));
                             HttpClient httpClient=new DefaultHttpClient();
-                            HttpPost httpPost=new HttpPost("http://10.255.13.193/projectNT/register.php");
+                            HttpPost httpPost=new HttpPost("http://192.168.56.1:8181/projectNT/register.php");
                             try{
                                 UrlEncodedFormEntity formEntity = new UrlEncodedFormEntity(nameValue);
                                 httpPost.setEntity(formEntity);
